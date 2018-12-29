@@ -6,5 +6,9 @@ module.exports = {
     mysql: {
         enabled: true,
         package: 'egg-mysql'
+    },
+    cors: {
+        enabled: true,
+        package: 'egg-cors'
     }
 }

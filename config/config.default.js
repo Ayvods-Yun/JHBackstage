@@ -2,6 +2,12 @@
 
 module.exports = appInfo => {
 	const config = exports = {
+		// 加载 errorHandler 中间件
+		middleware: ['errorHandler'],
+		// 只对 /api 前缀的 url 路径生效
+		errorHandler: {
+			match: '/api'
+		},
 		mysql: {
 			// 单数据库信息配置
 			client: {
@@ -20,14 +26,22 @@ module.exports = appInfo => {
 			app: true,
 			// 是否加载到 agent 上，默认关闭
 			agent: false
+		},
+		security: {
+			csrf: {
+				enable: false,
+				ignoreJSON: true
+			},
+			domainWhiteList: ['http://10.0.0.173']
+		},
+		cors: {
+			origin: '*',
+			allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
 		}
 	};
 
 	// use for cookie sign key, should change to your own and keep security
 	config.keys = appInfo.name + '_1544666604145_3847';
-
-	// add your config here
-	config.middleware = [];
 
 	return config;
 };
